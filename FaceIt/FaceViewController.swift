@@ -8,8 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class FaceViewController: VCLLoggingViewController
 {
+    var expression = FacialExpression(eyes: .open, mouth: .neutral) {
+        didSet {
+            updateUI()
+        }
+    }
+    
     @IBOutlet weak var faceView: FaceView! {
         didSet {
             let handler = #selector(FaceView.changeScale(byReactingTo:))
@@ -41,12 +47,6 @@ class ViewController: UIViewController
         if tapRecognizer.state == .ended {
             let eyes: FacialExpression.Eyes = (expression.eyes == .closed) ? .open : .closed
             expression = FacialExpression(eyes: eyes, mouth: expression.mouth)
-        }
-    }
-    
-    var expression = FacialExpression(eyes: .closed, mouth: .frown) {
-        didSet {
-            updateUI()
         }
     }
     

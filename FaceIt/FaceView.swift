@@ -131,4 +131,3 @@ class FaceView: UIView
         pathForMouth().stroke()
     }
 }
-
